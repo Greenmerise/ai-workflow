@@ -1,5 +1,7 @@
 # Project Skills
 
+*Insert this content into the `.claude/skills` folder of your project or in your user profile folder to use them in a new claude session*
+
 Skills for building and maintaining a project with AI. The system adds structure to two recurring activities:
 
 1. **Generating a project** from a written intent (`project.prompt.md`).
