@@ -1,12 +1,12 @@
 ---
 name: execute-debug
-description: "Scan the entire codebase for bugs, log findings to issues.log, and fix them by severity after user approval."
+description: "Scan the entire codebase for bugs, log findings to issues.log.md, and fix them by severity after user approval."
 disable-model-invocation: true
 ---
 
 # Execute Debug
 
-Scan the codebase for bugs, log findings to `issues.log`, prompt the user to choose what to fix, then apply fixes autonomously.
+Scan the codebase for bugs, log findings to `issues.log.md`, prompt the user to choose what to fix, then apply fixes autonomously.
 
 ## Execution policy
 
@@ -46,7 +46,7 @@ Before manual analysis, run any tooling the project already has. Capture all err
 - Compiler: `go build ./...`, `dotnet build`, `cargo check`, etc.
 - Package scripts: if `package.json` has `lint`, `typecheck`, `check`, or `test:types` scripts, run them.
 
-Run every applicable check — do not stop after the first one. If a tool is configured but not installed, note it in the final report's failures list and continue — do NOT log tooling gaps to `issues.log`. `issues.log` is for code defects, not environment problems.
+Run every applicable check — do not stop after the first one. If a tool is configured but not installed, note it in the final report's failures list and continue — do NOT log tooling gaps to `issues.log.md`. `issues.log.md` is for code defects, not environment problems.
 
 ## Step 3: Deep manual scan
 
@@ -100,7 +100,7 @@ If a finding fits multiple categories, use the **first matching category in the 
 
 ## Step 4: Log findings
 
-Read the existing `issues.log` and apply the dedup rule from `ISSUE_FORMAT.md` to each new finding. Append new entries under `## execute-debug — YYYY-MM-DD`.
+Read the existing `issues.log.md` and apply the dedup rule from `ISSUE_FORMAT.md` to each new finding. Append new entries under `## execute-debug — YYYY-MM-DD`.
 
 Then report a summary:
 

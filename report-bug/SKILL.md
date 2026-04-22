@@ -1,12 +1,12 @@
 ---
 name: report-bug
-description: "Accept a user-reported bug description, verify the bug in the codebase, log it to issues.log, and immediately fix it. If fixing surfaces additional bugs, log them and offer to fix those too."
+description: "Accept a user-reported bug description, verify the bug in the codebase, log it to issues.log.md, and immediately fix it. If fixing surfaces additional bugs, log them and offer to fix those too."
 disable-model-invocation: true
 ---
 
 # Report Bug
 
-Accept a user-reported bug, verify it exists in the codebase, log it to `issues.log`, and fix it — all without additional prompting.
+Accept a user-reported bug, verify it exists in the codebase, log it to `issues.log.md`, and fix it — all without additional prompting.
 
 This skill is the user-reported counterpart to `execute-debug`: `execute-debug` discovers bugs via automated scanning; `report-bug` investigates a specific bug the user has described.
 
@@ -62,7 +62,7 @@ Assign severity per the `ISSUE_FORMAT.md` ladder based on impact:
 
 If the bug is verified:
 
-1. Read the existing `issues.log` and apply the dedup rule from `ISSUE_FORMAT.md`.
+1. Read the existing `issues.log.md` and apply the dedup rule from `ISSUE_FORMAT.md`.
 2. Append the entry under `## report-bug — YYYY-MM-DD`.
 3. Report to the user:
 
@@ -100,7 +100,7 @@ Fix the verified bug immediately. NO user prompt — the user reported it, verif
 
 If fixing the reported bug reveals or creates additional bugs:
 
-1. Log each new bug to `issues.log` under the same `## report-bug — YYYY-MM-DD` section header, with appropriate severity and location.
+1. Log each new bug to `issues.log.md` under the same `## report-bug — YYYY-MM-DD` section header, with appropriate severity and location.
 2. Report the additional bugs to the user:
 
 ```
@@ -112,7 +112,7 @@ Fix these now? (yes/no)
 
 3. Use AskUserQuestion for this prompt.
 4. **If yes:** Fix all additional bugs following the same fixing rules (Step 4). Each additional fix may itself reveal more bugs — repeat this step until no new bugs emerge or the user declines.
-5. **If no:** Do NOT fix the additional bugs. Leave them `[ACTIVE]` in `issues.log`. The originally reported bug must already be fixed at this point — the user's decline only affects the additional bugs.
+5. **If no:** Do NOT fix the additional bugs. Leave them `[ACTIVE]` in `issues.log.md`. The originally reported bug must already be fixed at this point — the user's decline only affects the additional bugs.
 
 If no cascading bugs are found, skip this step entirely.
 

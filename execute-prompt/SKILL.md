@@ -34,7 +34,7 @@ If the user declines, stop immediately.
 Carry out the generation instructions from `project.prompt.md`. Generate all code, configuration, and content files described or implied by the prompt.
 
 While generating:
-- **The prompt file is your sole source of truth.** Do NOT read any other project file (including `CLAUDE.md`, `techspec.md`, `issues.log`, `README.md`, `package.json`, or anything else) for generation context. The only input is `project.prompt.md`. This ensures the prompt is a self-contained, reproducible generation input.
+- **The prompt file is your sole source of truth.** Do NOT read any other project file (including `CLAUDE.md`, `techspec.md`, `issues.log.md`, `README.md`, `package.json`, or anything else) for generation context. The only input is `project.prompt.md`. This ensures the prompt is a self-contained, reproducible generation input.
 - If the generated output mismatches the existing `CLAUDE.md` or other unrelated project files, that is acceptable — the user will reconcile via source control.
 - Use your best judgment for anything the prompt does not specify.
 - Do not leave placeholder or TODO comments — produce complete, working output.

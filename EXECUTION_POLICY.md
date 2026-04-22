@@ -21,7 +21,7 @@ Exception: if the skill genuinely cannot continue without information that canno
 When an autonomous step fails (build break, type error, test failure, dependency install failure, fix that cannot be completed):
 
 1. Do not revert. Leave the partial change in place; source control is the rollback mechanism.
-2. Log the failure to `issues.log` per `ISSUE_FORMAT.md`: `CATEGORY: BUG, SEVERITY: HIGH` (or `CRITICAL` if the project no longer builds). For a fix that couldn't be completed, leave the originating issue `[ACTIVE]` and append ` (blocked: {short reason})` to its description.
+2. Log the failure to `issues.log.md` per `ISSUE_FORMAT.md`: `CATEGORY: BUG, SEVERITY: HIGH` (or `CRITICAL` if the project no longer builds). For a fix that couldn't be completed, leave the originating issue `[ACTIVE]` and append ` (blocked: {short reason})` to its description.
 3. Continue with the next item. Surface all failures in the final report.
 
-Skills that don't write to `issues.log` still follow rules 1 and 3 — they just have no log to write to.
+Skills that don't write to `issues.log.md` still follow rules 1 and 3 — they just have no log to write to.
