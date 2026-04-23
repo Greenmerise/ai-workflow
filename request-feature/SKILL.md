@@ -1,12 +1,12 @@
 ---
 name: request-feature
-description: "Accept a user-requested feature or design change, analyze its impact, update techspec.md with the new design, log it to issues.log, and implement it. If the change cascades beyond the isolated feature area, prompt before proceeding."
+description: "Accept a user-requested feature or design change, analyze its impact, update techspec.md with the new design, log it to issues.log.md, and implement it. If the change cascades beyond the isolated feature area, prompt before proceeding."
 disable-model-invocation: true
 ---
 
 # Request Feature
 
-Accept a user-requested feature or design change, analyze its feasibility and impact, update `techspec.md` to reflect the new design, log it to `issues.log`, and implement it — all without additional prompting unless the change requires a broader refactor.
+Accept a user-requested feature or design change, analyze its feasibility and impact, update `techspec.md` to reflect the new design, log it to `issues.log.md`, and implement it — all without additional prompting unless the change requires a broader refactor.
 
 This skill is the user-requested counterpart to `execute-techreview`: `execute-techreview` discovers design flaws via automated analysis; `request-feature` implements a specific design change the user has described. The same relationship holds as between `report-bug` and `execute-debug` — one is user-initiated and targeted, the other is automated and comprehensive.
 
@@ -20,7 +20,7 @@ This skill follows `../EXECUTION_POLICY.md`. In particular: the analysis phase (
 
 Follow the schema in `../ISSUE_FORMAT.md`. Use `CATEGORY: FEATURE` for the requested feature entry. Use `CATEGORY: DESIGN` for cascading design changes surfaced during analysis. Use `CATEGORY: BUG` for bugs discovered during implementation. Use `CATEGORY: REFACTOR` for incidental continuity changes made while implementing. Use `## request-feature — YYYY-MM-DD` as the section header.
 
-Each cascading issue — whether a design change, bug, or refactor — MUST be its own atomic entry in `issues.log` so it can be independently tracked.
+Each cascading issue — whether a design change, bug, or refactor — MUST be its own atomic entry in `issues.log.md` so it can be independently tracked.
 
 ## Input
 
@@ -85,7 +85,7 @@ Return: `{feasible: false, reason}` — the main skill will report this to the u
 
 ## Step 3: Log the feature request
 
-1. Read the existing `issues.log` and apply the dedup rule from `ISSUE_FORMAT.md`.
+1. Read the existing `issues.log.md` and apply the dedup rule from `ISSUE_FORMAT.md`.
 2. Log the feature entry with `CATEGORY: FEATURE`, `STATUS: ACTIVE`, and severity per the `ISSUE_FORMAT.md` ladder based on the feature's impact on the project (most features are `MEDIUM`; use `HIGH` if it changes core behavior or public interfaces; use `LOW` for cosmetic or minor additions).
 3. If the analysis identified cascading design changes, log each as a separate atomic entry with `CATEGORY: DESIGN`, `STATUS: ACTIVE`.
 4. Report to the user:
@@ -110,7 +110,7 @@ The feature itself will be implemented. Proceed with the broader design changes?
 
 5. For broad changes, use AskUserQuestion for the cascading-changes prompt.
    - **If yes:** Proceed with all changes (feature + cascading design changes).
-   - **If no:** Implement only the feature itself in isolation. Leave cascading design issues `[ACTIVE]` in `issues.log` for future resolution. If implementing the feature in isolation would produce broken or incoherent code, log the feature as `(blocked: cascading changes declined)` per `EXECUTION_POLICY.md` failure handling and stop with the final report.
+   - **If no:** Implement only the feature itself in isolation. Leave cascading design issues `[ACTIVE]` in `issues.log.md` for future resolution. If implementing the feature in isolation would produce broken or incoherent code, log the feature as `(blocked: cascading changes declined)` per `EXECUTION_POLICY.md` failure handling and stop with the final report.
 
 ## Step 4: Update the techspec
 
@@ -148,16 +148,16 @@ After the techspec is updated, implement the feature in the codebase. `techspec.
 
 If implementing the feature reveals or creates additional issues (bugs, design inconsistencies, or necessary refactors):
 
-1. Log each issue as its own **atomic entry** in `issues.log` under the same `## request-feature — YYYY-MM-DD` section header, with the appropriate category (`BUG`, `DESIGN`, or `REFACTOR`), severity, and location.
+1. Log each issue as its own **atomic entry** in `issues.log.md` under the same `## request-feature — YYYY-MM-DD` section header, with the appropriate category (`BUG`, `DESIGN`, or `REFACTOR`), severity, and location.
 
 2. For bugs discovered during implementation:
    - Fix them immediately following the same implementation rules (Step 5).
-   - Mark them `[FIXED]` in `issues.log`.
+   - Mark them `[FIXED]` in `issues.log.md`.
    - Each fix may reveal more issues — repeat until stable.
 
 3. For design issues discovered during implementation that were NOT part of the original analysis:
    - If isolated to the feature area: fix them (update techspec + code), mark `[FIXED]`.
-   - If they extend beyond the feature area: leave them `[ACTIVE]` in `issues.log`. Report them to the user but do NOT prompt — these are tracked for future resolution.
+   - If they extend beyond the feature area: leave them `[ACTIVE]` in `issues.log.md`. Report them to the user but do NOT prompt — these are tracked for future resolution.
 
 4. For refactors needed to maintain continuity:
    - Apply them immediately. Log with `CATEGORY: REFACTOR` and mark `[FIXED]`.
@@ -165,7 +165,7 @@ If implementing the feature reveals or creates additional issues (bugs, design i
 ## Step 7: Mark the feature complete
 
 After implementation:
-1. Update the feature's `issues.log` entry: `[ACTIVE]` → `[FIXED]`, update the date.
+1. Update the feature's `issues.log.md` entry: `[ACTIVE]` → `[FIXED]`, update the date.
 2. Optionally append `(fix: implemented per techspec)` to the description.
 3. Verify the techspec fully reflects the implementation. If any implementation detail is missing from the techspec, add it now.
 

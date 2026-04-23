@@ -1,6 +1,6 @@
 ---
 name: initialize-project
-description: Initialize a new project by creating starter files (project.prompt.md, CLAUDE.md, techspec.md, issues.log) at the project root.
+description: Initialize a new project by creating starter files (project.prompt.md, CLAUDE.md, techspec.md, issues.log.md) at the project root.
 disable-model-invocation: true
 ---
 
@@ -47,9 +47,9 @@ For each file below, use Glob to check if it already exists. If it exists, skip 
 
    Shared reference files (`ISSUE_FORMAT.md`, `EXECUTION_POLICY.md`, `FINAL_REPORT.md`) live in the skills folder — either this project's `.claude/skills/` or the user's `~/.claude/skills/`, depending on where the suite is installed. Use the Read tool to locate them; check the project folder first, then the user-global folder.
 
-   ### Issue tracking — `issues.log`
-   - Whenever you discover a bug, defect, design flaw, inconsistency, or other issue in the codebase (whether or not you fix it immediately), you MUST log it in `issues.log` at the project root.
-   - The format, severity ladder, category values, and dedup rules for `issues.log` are defined in `ISSUE_FORMAT.md` (see location note above). Follow that schema exactly.
+   ### Issue tracking — `issues.log.md`
+   - Whenever you discover a bug, defect, design flaw, inconsistency, or other issue in the codebase (whether or not you fix it immediately), you MUST log it in `issues.log.md` at the project root.
+   - The format, severity ladder, category values, and dedup rules for `issues.log.md` are defined in `ISSUE_FORMAT.md` (see location note above). Follow that schema exactly.
    - Do not silently fix issues without logging them. The log is the source of truth for what has been found and addressed.
    - When an issue is resolved, update its status in place (`[ACTIVE]` → `[FIXED]`) rather than deleting the entry.
 
@@ -67,7 +67,7 @@ For each file below, use Glob to check if it already exists. If it exists, skip 
    - Skills in this suite operate autonomously after confirmation and do not preview diffs, track file manifests, or offer rollback. Keep a clean working tree before running `execute-*` skills so that `git diff` / `git restore` are available for review and recovery.
 
    ### Skills to prefer
-   - Use `execute-debug` for codebase-wide bug scans; it writes to `issues.log` automatically.
+   - Use `execute-debug` for codebase-wide bug scans; it writes to `issues.log.md` automatically.
    - Use `report-bug` to report, verify, and fix a specific bug you've encountered.
    - Use `execute-techspec` to rewrite `techspec.md` from the current codebase.
    - Use `request-feature` to design, log, and implement a specific feature or design change.
@@ -78,7 +78,7 @@ For each file below, use Glob to check if it already exists. If it exists, skip 
 
 3. **`techspec.md`** — Empty file. Comprehensive technical specification of the current project, maintained by `execute-techspec` and `execute-techreview` so that the project could be regenerated from it.
 
-4. **`issues.log`** — Empty file. Tracks bugs and design findings. Schema is defined in `../ISSUE_FORMAT.md`.
+4. **`issues.log.md`** — Empty file. Tracks bugs and design findings. Schema is defined in `../ISSUE_FORMAT.md`.
 
 ## Final report
 

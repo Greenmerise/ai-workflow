@@ -1,6 +1,6 @@
 # Issue Log Format
 
-Shared schema for `issues.log`. All skills that read or write `issues.log` MUST follow this format exactly.
+Shared schema for `issues.log.md`. All skills that read or write `issues.log.md` MUST follow this format exactly.
 
 ## Line schema
 
@@ -69,7 +69,7 @@ Examples:
 - `## execute-debug — 2026-04-13`
 - `## execute-techreview — 2026-04-13`
 
-The skill name must match the skill directory name verbatim so `issues.log` is mechanically greppable by origin.
+The skill name must match the skill directory name verbatim so `issues.log.md` is mechanically greppable by origin.
 
 Multiple runs on the same day may share a header or use separate ones; do not merge entries from different runs retroactively.
 

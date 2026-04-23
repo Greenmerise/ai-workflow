@@ -1,12 +1,12 @@
 ---
 name: execute-techreview
-description: "Review techspec.md for design flaws, gaps, conflicts, and over/under-engineering. Log findings to issues.log, prompt the user to pick what to fix, then apply fixes to both techspec.md and the codebase."
+description: "Review techspec.md for design flaws, gaps, conflicts, and over/under-engineering. Log findings to issues.log.md, prompt the user to pick what to fix, then apply fixes to both techspec.md and the codebase."
 disable-model-invocation: true
 ---
 
 # Execute Tech Review
 
-Analyze `techspec.md` for design-level issues, log findings to `issues.log`, prompt the user to fix by severity, then apply selected fixes to both `techspec.md` and the codebase.
+Analyze `techspec.md` for design-level issues, log findings to `issues.log.md`, prompt the user to fix by severity, then apply selected fixes to both `techspec.md` and the codebase.
 
 This skill is the design-level counterpart to `execute-debug`: `execute-debug` fixes code defects, `execute-techreview` fixes design.
 
@@ -78,7 +78,7 @@ If a finding fits multiple dimensions, use the **first matching dimension in the
 
 ## Step 3: Log findings
 
-Read the existing `issues.log` and apply the dedup rule from `ISSUE_FORMAT.md` to each new finding. Append new entries under `## execute-techreview — YYYY-MM-DD`.
+Read the existing `issues.log.md` and apply the dedup rule from `ISSUE_FORMAT.md` to each new finding. Append new entries under `## execute-techreview — YYYY-MM-DD`.
 
 Then report a summary:
 
@@ -119,7 +119,7 @@ For each selected finding, edit `techspec.md` to incorporate the fix.
 **Techspec edits must be prescriptive, not descriptive.** The techspec is a design authority — it says what the project *should* look like. When a finding identifies a gap, conflict, or flaw:
 
 - **DO** write the techspec as if the design is already correct: describe the intended behavior, the data model, the API, the algorithm. Then in Step 6, implement it.
-- **DO NOT** add notes like "this is a placeholder", "not yet implemented", "audio is non-functional", "coverage gaps exist". Those are observations about the current state, not design decisions. They belong in `issues.log`, not `techspec.md`.
+- **DO NOT** add notes like "this is a placeholder", "not yet implemented", "audio is non-functional", "coverage gaps exist". Those are observations about the current state, not design decisions. They belong in `issues.log.md`, not `techspec.md`.
 - **DO NOT** document a limitation as "acknowledged" and move on. If the finding says persistence is in-memory only, the fix is to specify file-system persistence in the techspec, then implement it in Step 6.
 - **Exception: SUGGESTION severity.** For findings at SUGGESTION level, adding a design note to the techspec is acceptable — the finding is advisory, not a defect.
 

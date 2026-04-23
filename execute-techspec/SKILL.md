@@ -20,6 +20,10 @@ Write directly to `techspec.md` in the project root. If it already exists, overw
 
 This is a descriptive specification, not a review. Do NOT identify flaws, suggest improvements, flag anti-patterns, or recommend changes. Only document what actually exists in the codebase today. Design flaws are the concern of `execute-techreview`.
 
+## Do not hallucinate or make up facts
+ 
+Only state facts that you have validated against the actual code or other files in the repository. NEVER hallucinate or state "facts" that you can't back up with code or other artifacts in the repository. If git submodules are involved, verify any assumptions you make about them, if needed look at their code as well. Do NOT run `git submodule update`, but do warn if a submodule is not initialized/available.
+
 ## Analysis process
 
 **Delegate the analysis phase to a fresh subagent.** Spawn a subagent (via the Agent tool) whose sole job is to survey the codebase and return the structured findings needed to fill each section of the template below. This ensures the analysis is performed in a genuinely fresh context, unpolluted by the main session.
