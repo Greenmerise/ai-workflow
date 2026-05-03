@@ -20,7 +20,8 @@ Classification by behavior, not prefix, determines which policy rules apply (see
 |---|---|
 | `initialize-project` | Scaffolds `project.prompt.md`, `CLAUDE.md`, `techspec.md`, `issues.log.md` at the project root. |
 | `evaluate-prompt` | Assesses `project.prompt.md` for clarity. Read-only. |
-| `execute-prompt` | Generates the full project from `project.prompt.md`. Overwrites existing files; relies on source control for rollback. |
+| `design-prompt` | Breaks a `{name}.prompt.md` into ordered, human-reviewable build phases under `design/{name}/`, documenting the *why* behind each. Does not write code. |
+| `implement-design` | Implements a design produced by `design-prompt`. Accepts a whole design folder or a single phase. Decisions cascade through the design file, `techspec.md`, the existing codebase, and best judgment — never prompts. |
 | `execute-techspec` | Writes a comprehensive `techspec.md` describing the current codebase. |
 | `execute-techreview` | Analyzes `techspec.md` for design flaws, logs them to `issues.log.md`, prompts user to pick fixes, and applies them to both spec and code. |
 | `execute-debug` | Scans the codebase for bugs, logs them to `issues.log.md`, prompts user to pick fixes, and applies them. |
@@ -34,8 +35,9 @@ Classification by behavior, not prefix, determines which policy rules apply (see
 1. `initialize-project` — scaffold files.
 2. Write `project.prompt.md` describing what you want built.
 3. `evaluate-prompt` — iterate on the prompt until its clarity score is satisfactory.
-4. `execute-prompt` — generate the initial project.
-5. `execute-techspec` — capture the as-built state.
+4. `design-prompt` — break the prompt into reviewable build phases under `design/{name}/`.
+5. `implement-design` — implement the design (or a single phase at a time).
+6. `execute-techspec` — capture the as-built state.
 
 ### Ongoing maintenance
 

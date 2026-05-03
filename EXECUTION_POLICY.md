@@ -8,11 +8,11 @@ Every skill invocation starts fresh. Analysis phases (surveying code, evaluating
 
 Fresh context refers to Claude's conversation state — not toolchain caches (ESLint, tsc, etc.) and not rules elsewhere in the skill about which files to read.
 
-Skills with no analysis phase (`initialize-project`, `execute-prompt`) don't need a subagent; "fresh" for them just means re-reading disk state and not assuming prior-run outcomes.
+Skills with no analysis phase (`initialize-project`, `implement-design`) don't need a subagent; "fresh" for them just means re-reading disk state and not assuming prior-run outcomes.
 
 ## Autonomous operation
 
-File-modifying skills (`initialize-project`, `execute-prompt`, `execute-techspec`, `execute-debug`, `execute-techreview`, `report-bug`, `request-feature`) run to completion without further prompts after the user's initial approval. No confirmations, no diff previews, no per-file prompts — source control is the review mechanism.
+File-modifying skills (`initialize-project`, `implement-design`, `execute-techspec`, `execute-debug`, `execute-techreview`, `report-bug`, `request-feature`) run to completion without further prompts after the user's initial approval. No confirmations, no diff previews, no per-file prompts — source control is the review mechanism.
 
 Exception: if the skill genuinely cannot continue without information that cannot be inferred (missing API key, unavailable external resource), it may ask one focused question. Stylistic choices and "which approach is better" are never grounds to prompt.
 
