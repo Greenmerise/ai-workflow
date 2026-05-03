@@ -12,7 +12,7 @@ Skills with no analysis phase (`initialize-project`, `implement-design`) don't n
 
 ## Autonomous operation
 
-File-modifying skills (`initialize-project`, `implement-design`, `execute-techspec`, `execute-debug`, `execute-techreview`, `report-bug`, `request-feature`) run to completion without further prompts after the user's initial approval. No confirmations, no diff previews, no per-file prompts — source control is the review mechanism.
+File-modifying skills (`initialize-project`, `design-prompt`, `implement-design`, `execute-techspec`, `execute-debug`, `execute-techreview`, `report-bug`, `request-feature`) run to completion without further prompts after the user's initial approval. No confirmations, no diff previews, no per-file prompts — source control is the review mechanism.
 
 Exception: if the skill genuinely cannot continue without information that cannot be inferred (missing API key, unavailable external resource), it may ask one focused question. Stylistic choices and "which approach is better" are never grounds to prompt.
 
